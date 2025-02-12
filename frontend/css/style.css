@@ -1,0 +1,346 @@
+.b1 {
+   display: flex;
+   flex-wrap: wrap;
+   align-items: center;
+   justify-content: center;
+   border: #fff 1px solid;
+}
+
+.b1 .b {
+   margin: 50px;
+   border-radius: 12px;
+}
+
+.b1 .b h1 {
+   background-color: #0C5E69;
+   color: #fff;
+   width: 150px;
+   font: 1.5rem 'MutatorSans', sans-serif;
+   font-weight: 500;
+   text-align: center;
+}
+
+.b1 .b p {
+   text-align: center;
+   font-size: 20px;
+   text-transform: uppercase;
+}
+
+.b1 .b .text {
+   background-color: #fff;
+   border: 10px solid #fff;
+   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.6);
+   height: 50px;
+   margin-top: -20px;
+
+}
+
+.prin {
+   display: block;
+}
+
+.containerDepense {
+
+   padding: 10px;
+
+}
+
+/* Début style ajout_depense.html */
+.container {
+   /* width: 960px;
+   padding: 0 15px;
+   margin: 0 auto; */
+
+   position: relative;
+}
+
+.title-conten {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+/* #addContactModalButton {
+   position: relative;
+   bottom: 60px;
+   right: 190px;
+
+} */
+
+#addContactModalButton {
+
+   background-color: grey;
+   border: 5px solid rebeccapurple;
+   color: #fff;
+   padding: 14px 20px;
+   margin: 8px;
+   position: absolute;
+   top:260px;
+   left: -20px;
+   cursor: pointer;
+   border: 1px solid #D1C000;
+   margin-left: 620px;
+   border-radius: 5px;
+   background-color: #D1C000;
+   color: #fff;
+   font-size: 19px;
+
+   
+}
+
+/* le modal */
+.modal {
+   display: none;
+   position: fixed;
+   z-index: 1;
+   padding-top: 80px 30px;
+   right: 250px;
+   top: 200px;
+   width: 65%;
+   overflow: auto;
+}
+
+.modal-content {
+   background-color: #fefefe;
+   margin: auto;
+   padding: 20px;
+   border: 1px solid gray;
+   width: 75%;
+}
+
+.close {
+   color: #690c0c;
+   float: right;
+   font-size: 20px;
+   font-weight: bold;
+   cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+   color: black;
+   text-decoration: none;
+}
+
+caption {
+   color: #D1C000;
+   font-size: 20px;
+   font-weight: bolder;
+   text-transform: uppercase;
+   margin-right: 190px;
+
+}
+
+form {
+   display: flex;
+   flex-direction: column;
+   padding: 32px;
+}
+
+input {
+   padding: 12px;
+
+   border: 1px solid#ccc;
+   outline: 0;
+   border-radius: 4px;
+   margin-top: 5px;
+   margin-bottom: 6px;
+
+}
+
+thead tr,
+th {
+   padding: 8px;
+   background-color: #0C5E69;
+   color: #fff;
+   border-radius: 3px;
+   font-size: 30px;
+   font-weight: bolder;
+}
+
+.addContactButton {
+   background-color: #0C5E69;
+   border: 1px solid #0C5E69;
+   color: #fff;
+   padding: 14px 20px;
+   margin: 8px 0;
+   cursor: pointer;
+   border-radius: 4px;
+}
+
+.table {
+   border-collapse: collapse;
+   position: absolute;
+   top: 300px;
+   width: 40%;
+   margin-left: 70px;
+   padding-bottom: 122px;
+
+
+
+
+
+}
+
+.table td {
+   border: 1px solid grey;
+   padding: 8px;
+   text-align: left;
+}
+
+
+
+.table tr:hover {
+   background-color: rgba(223, 223, 223);
+}
+
+.delete-btn {
+   background-color: red;
+   color: #fff;
+   border: 1px solid red;
+   padding: 6px 13px;
+   cursor: pointer;
+   border-radius: 6px;
+
+}
+
+/* Partie revenu */
+
+
+.containerR {
+   position: relative;
+   padding: 10px;
+   bottom: -100px;
+
+}
+
+
+.title-contenR {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+
+}
+
+
+.addContactModalButtonR {
+   /* background-color: grey;
+   color: #fff;
+   padding: 14px 20px;
+   margin: 8px;
+   position: relative;
+   top: 25px;
+   left: 240px;
+   cursor: pointer;
+   border: 1px solid #D1C000;
+   margin-left: 620px;
+   border-radius: 5px;
+   background-color: #D1C000;
+   color: #fff;
+   font-size: 19px; */
+   
+   background-color: grey;
+   border: 5px solid rebeccapurple;
+   color: #fff;
+   padding: 14px 20px;
+   margin: 8px;
+   position: absolute;
+   top:-50px;
+   left: 860px;
+   cursor: pointer;
+   border: 1px solid #D1C000;
+   margin-left: 620px;
+   border-radius: 5px;
+   background-color: #D1C000;
+   color: #fff;
+   font-size: 19px;
+}
+
+/* le modalRevenu */
+.modalR {
+  position: absolute;
+   display: none;
+   position: fixed;
+   z-index: 1;
+   padding-top: 80px 30px;
+   right: 250px;
+   top: 200px;
+   width: 65%;
+   overflow: auto;
+
+}
+
+.modal-contentR {
+   background-color: #fefefe;
+   margin: auto;
+   padding: 20px;
+   border: 1px solid gray;
+   width: 75%;
+}
+
+
+.closeR {
+   color: #690c0c;
+   float: right;
+   font-size: 20px;
+   font-weight: bold;
+   cursor: pointer;
+}
+
+.closeR:hover,
+.closeR:focus {
+   color: black;
+   text-decoration: none;
+}
+
+#addContactButtonR {
+   background-color: #0C5E69;
+   border: 1px solid #0C5E69;
+   color: #fff;
+   padding: 14px 20px;
+   margin: 8px 0;
+   cursor: pointer;
+   border-radius: 4px;
+}
+
+.tableR tr:hover {
+   background-color: rgba(223, 223, 223);
+}
+
+.tableR {
+
+   border-collapse: collapse;
+   width: 40%;
+   position: relative;
+   top: -20px;
+   margin-right: 70px;
+   margin-bottom: 650px;
+}
+
+.tableR td {
+   border: 1px solid grey;
+   padding: 8px;
+   text-align: left;
+}
+
+.tableR {
+   /* position: static; */
+   right: 22px;
+   bottom: 170px;
+}
+
+
+
+
+.navbar {
+   margin: 10px;
+   padding: 10px;
+   background-color: #bbc7c9;
+
+}
+
+.navbar ul {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
