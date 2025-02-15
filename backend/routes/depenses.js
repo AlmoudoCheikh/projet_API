@@ -1,5 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const { updateSolde } = require('./solde');
+
+
 const db = require('../database');
 // const { updateSolde } = require('./solde'); // Assure-toi que cette fonction est exportée depuis solde.js
 

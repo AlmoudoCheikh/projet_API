@@ -124,11 +124,11 @@ function deleteDepense(index) {
     });
 }
 
-// 3. Ajouter un revenu via l'API
+// // 3. Ajouter un revenu via l'API
 document.getElementById('formRevenu').addEventListener('submit', function (event) {
     event.preventDefault();
 
-    const titreR = document.getElementById('titreR').value;
+    const titreR = document.getElementById('titreR').value.trim();
     const montantR = document.getElementById('montantR').value;
 
     if (!titreR || !montantR) {
@@ -155,6 +155,9 @@ document.getElementById('formRevenu').addEventListener('submit', function (event
     document.getElementById('contactModalR').style.display = 'none'; // Fermer le modal
 });
 
+
+
+
 function deleteRevenu(index) {
     const revenu = tabStockRevenu[index]; // Récupérer le revenu à partir de l'index
     const revenuId = revenu.idRevenu; // Utiliser l'ID du revenu pour la suppression
@@ -176,6 +179,73 @@ function deleteRevenu(index) {
         console.error('Erreur lors de la suppression du revenu:', error);
     });
 }
+
+
+
+// document.getElementById('formRevenu').addEventListener('submit', function (event) {
+//     event.preventDefault();
+
+//     // Récupérer les valeurs des champs
+//     const titreR = document.getElementById('titreR').value.trim(); // On enlève les espaces inutiles
+//     const montantR = parseFloat(document.getElementById('montantR').value);
+
+//     // Vérification que les champs sont remplis et que le montant est un nombre
+//     if (!titreR || isNaN(montantR)) {
+//         alert("❌ Merci de remplir tous les champs correctement !");
+//         return;
+//     }
+
+//     const newRevenu = { titreR, montantR };
+
+//     // Affichage des données envoyées pour vérification
+//     console.log("Revenu à envoyer:", newRevenu);
+
+//     // Envoi du revenu à l'API
+//     fetch(`${apiBaseUrl}/revenus`, {
+//         method: 'POST',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify(newRevenu)
+//     })
+//     .then(response => response.json())
+//     .then(data => {
+//         fetchRevenus(); // Rafraîchir la liste des revenus
+//         console.log("Revenu ajouté:", data);
+//     })
+//     .catch(error => {
+//         console.error('Erreur lors de l\'ajout du revenu:', error);
+//     });
+
+//     // Réinitialisation du formulaire et fermeture du modal
+//     document.getElementById('titreR').value = '';
+//     document.getElementById('montantR').value = '';
+//     document.getElementById('contactModalR').style.display = 'none';
+// });
+
+
+function deleteRevenu(index) {
+    const revenu = tabStockRevenu[index]; // Récupérer le revenu à partir de l'index
+    const revenuId = revenu.idRevenu; // Utiliser l'ID du revenu pour la suppression
+    console.log("ID du revenu à supprimer :", revenuId);  // Ajoutez cette ligne pour déboguer
+
+    fetch(`${apiBaseUrl}/revenus/${revenuId}`, {
+        method: 'DELETE'
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Erreur lors de la suppression du revenu");
+        }
+        return response.json();
+    })
+    .then(() => {
+        // Rafraîchir la liste des revenus après suppression
+        fetchRevenus();
+    })
+    .catch(error => {
+        console.error('Erreur lors de la suppression du revenu:', error);
+    });
+}
+
+
 
 // parti pour ajouter une depense
 
@@ -231,7 +301,7 @@ function updateTableDepense() {
             <td>${depense.titre}</td>
             <td>${depense.montant}</td>
             <td>
-               
+               <button onclick="editDepense(${index})">modifier</button>
                 <button onclick="deleteDepense(${index})">Supprimer</button>
             </td>
         `;
@@ -257,7 +327,7 @@ document.getElementById('formRevenu').addEventListener('submit', function (event
 
     
 
-    const newRevenu = { titreR, montanRt };
+    const newRevenu = { titreR, montantR };
 
     // Log de l'objet à envoyer
     console.log("Revenu à envoyer:", newRevenu);
@@ -302,22 +372,13 @@ function updateTableRevenu() {
             <td>${revenu.titre}</td>
             <td>${revenu.montant}</td>
             <td>
-                
+                <button onclick="editRevenu(${index})">Modifier</button>
                 <button onclick="deleteRevenu(${index})">Supprimer</button>
             </td>
         `;
         tableRevenu.appendChild(tr);
     });
 }
-
-
-// Fonction pour fermer le modal si l'utilisateur clique en dehors
-const modal = document.getElementById('contactModal'); // Récupérer l'élément modal
-window.onclick = function (event) {
-    if (event.target == modal) {
-        modal.style.display = 'none'; // Fermer le modal
-    }
-};
 
 
 
@@ -435,6 +496,71 @@ function editRevenu(index) {
         });
     };
 }
+
+
+
+
+
+
+const updatedDepense = { titre: updatedTitre, montant: updatedMontant };
+fetch(`${apiBaseUrl}/depenses/${depenseId}`, {  // Vérifie que l'ID de la dépense est bien envoyé ici
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(updatedDepense)
+})
+.then(response => {
+    if (!response.ok) {
+        throw new Error('Erreur lors de la modification');
+    }
+    return response.json();
+})
+.then(data => {
+    console.log('Dépense modifiée avec succès:', data);
+    fetchDepenses(); // Rafraîchir la liste après modification
+})
+.catch(error => {
+    console.error('Erreur lors de la modification de la dépense:', error);
+});
+
+
+
+
+
+
+// Récupérer l'élément modal et le bouton de fermeture (X) pour Dépense
+const modal = document.getElementById("contactModal");
+const closeButton = document.querySelector(".close");
+
+// Fonction pour fermer le modal de Dépense quand on clique sur le X
+closeButton.onclick = function () {
+    modal.style.display = "none"; // Fermer le modal de Dépense
+};
+
+// Fonction pour fermer le modal de Dépense quand on clique à l'extérieur
+window.onclick = function (event) {
+    if (event.target == modal) {  // Vérifie si le clic est en dehors du modal de la Dépense
+        modal.style.display = 'none';  // Ferme le modal de Dépense
+    }
+};
+
+
+
+// Récupérer l'élément modal et le bouton de fermeture (X) pour Revenu
+const modalRevenu = document.getElementById("contactModalR");
+const closeButtonRevenu = document.querySelector(".closeR");
+
+// Fonction pour fermer le modal de Revenu quand on clique sur le X
+closeButtonRevenu.onclick = function () {
+    modalRevenu.style.display = 'none';  // Fermer le modal de Revenu
+};
+
+// Fonction pour fermer le modal de Revenu quand on clique à l'extérieur
+window.onclick = function (event) {
+    if (event.target == modalRevenu) {  // Vérifie si le clic est en dehors du modal de Revenu
+        modalRevenu.style.display = 'none';  // Ferme le modal de Revenu
+    }
+};
+
 
 
 // 7. Appel des fonctions de récupération lors du chargement de la page

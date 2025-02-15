@@ -7,11 +7,16 @@ const cors = require('cors');
 const mysql = require('mysql2');
 const db = require('./backend/database');  // Si tu as un fichier de connexion à la DB
 
-// Importer les routes de l'API
+// // Importer les routes de l'API
+
 const depensesRoutes = require('./backend/routes/depenses');
 const revenusRoutes = require('./backend/routes/revenus');
 const soldeRoutes = require('./backend/routes/solde').router;
-const updateSolde = require('./backend/routes/solde').updateSolde;
+
+// const depensesRoutes = require('./backend/routes/depenses');
+// const revenusRoutes = require('./backend/routes/revenus');
+// const soldeRoutes = require('./backend/routes/solde').router;
+// const updateSolde = require('./backend/routes/solde').updateSolde;
 
 // Initialiser l'application Express
 const app = express();
@@ -64,6 +69,9 @@ app.listen(PORT, () => {
 // const app = express();
 // const cors = require('cors');
 // const db = require('./backend/database');
+
+
+// // const { updateSolde } = require('./backend/routes/solde');
 
 // // Importer les routes
 // const { router: depensesRoutes } = require('./backend/routes/depenses');
@@ -127,3 +135,4 @@ app.listen(PORT, () => {
 // app.listen(PORT, () => {
 //     console.log(`🚀 Serveur démarré sur http://localhost:${PORT}`);
 // });
+

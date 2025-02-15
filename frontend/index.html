@@ -39,20 +39,24 @@
                     <button class="addContactModalButtonR" type="button">Ajouter Revenu</button>
                 </div>
 
-                <div class="modalR" id="contactModalR">
-                    <div class="modal-contentR">
-                        <span class="closeR">X</span>
-                        <div class="formR">
-                            <form id="formRevenu">
-                                <label for="titreR">Titre</label>
-                                <input type="text" id="titreR" placeholder="Exemple: Salaire" required>
-                                <label for="montantR">Montant</label>
-                                <input type="number" id="montantR" placeholder="Exemple: 1500" required>
-                                <button type="submit" class="addContactButtonR">Valider</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+<!-- Modal Revenu -->
+<div class="modalR" id="contactModalR">
+    <div class="modal-contentR">
+        <span class="closeR">X</span> <!-- Le bouton pour fermer -->
+        <div class="formR">
+            <form id="formRevenu">
+                <label for="titreR">Titre</label>
+                <input type="text" id="titreR" placeholder="Exemple: Salaire" required>
+                <label for="montantR">Montant</label>
+                <input type="number" id="montantR" placeholder="Exemple: 1500" required>
+                <!-- Exemple d'élément caché dans ton formulaire pour l'ID -->
+                <input type="hidden" id="idDepense" value="id_de_la_depense">
+
+                <button type="submit" class="addContactButtonR">Valider</button>
+            </form>
+        </div>
+    </div>
+</div>
 
                 <div class="contactRevenu">
                     <table class="tableR" align="center">
@@ -88,6 +92,9 @@
                                 <input type="number" id="montant" placeholder="Exemple: 1000" required>
                                 <!-- Champ caché pour distinguer ajout et modification -->
                                 <input type="hidden" id="actionType" value="add"> <!-- Par défaut, c'est un ajout -->
+                                <!-- Exemple d'élément caché dans ton formulaire pour l'ID -->
+                                <input type="hidden" id="idDepense" value="id_de_la_depense">
+
                                 <button type="submit" class="addContactButton">Valider</button>
                             </form>
                         </div>

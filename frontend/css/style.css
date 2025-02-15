@@ -47,9 +47,7 @@
 
 /* Début style ajout_depense.html */
 .container {
-   /* width: 960px;
-   padding: 0 15px;
-   margin: 0 auto; */
+  
 
    position: relative;
 }
@@ -60,12 +58,7 @@
    align-items: center;
 }
 
-/* #addContactModalButton {
-   position: relative;
-   bottom: 60px;
-   right: 190px;
 
-} */
 
 #addContactModalButton {
 
@@ -84,43 +77,55 @@
    background-color: #D1C000;
    color: #fff;
    font-size: 19px;
-
-   
 }
 
-/* le modal */
+
+/* Modal : Fond semi-transparent couvrant tout l'écran */
 .modal {
-   display: none;
+   display: none; /* Par défaut, le modal est caché */
    position: fixed;
-   z-index: 1;
-   padding-top: 80px 30px;
-   right: 250px;
-   top: 200px;
-   width: 65%;
-   overflow: auto;
+   z-index: 1; /* S'assurer que le modal soit au-dessus du contenu */
+   left: 0;
+   top: 0;
+   width: 100%; /* Couvrir toute la largeur de l'écran */
+   height: 100%; /* Couvrir toute la hauteur de l'écran */
+   background-color: rgba(0, 0, 0, 0.4); /* Fond semi-transparent */
 }
 
+/* Contenu du modal : Réduire la taille du contenu */
 .modal-content {
-   background-color: #fefefe;
-   margin: auto;
+   background-color: white;
+   margin: 10% auto; /* Centrer le modal avec un espace autour */
    padding: 20px;
-   border: 1px solid gray;
-   width: 75%;
+   border: 1px solid #888;
+   width: 50%; /* Réduire la largeur du modal à 50% de l'écran */
+   max-width: 600px; /* Limiter la taille du modal pour ne pas qu'il devienne trop grand */
+   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Ajouter une ombre douce */
+   border-radius: 10px; /* Ajouter un arrondi sur les bords du modal */
 }
 
+/* Le bouton X pour fermer le modal */
 .close {
-   color: #690c0c;
+   color: #aaa;
    float: right;
-   font-size: 20px;
+   font-size: 28px;
    font-weight: bold;
-   cursor: pointer;
 }
 
 .close:hover,
 .close:focus {
    color: black;
    text-decoration: none;
+   cursor: pointer;
 }
+
+
+
+
+
+
+
+
 
 caption {
    color: #D1C000;
@@ -224,20 +229,6 @@ th {
 
 
 .addContactModalButtonR {
-   /* background-color: grey;
-   color: #fff;
-   padding: 14px 20px;
-   margin: 8px;
-   position: relative;
-   top: 25px;
-   left: 240px;
-   cursor: pointer;
-   border: 1px solid #D1C000;
-   margin-left: 620px;
-   border-radius: 5px;
-   background-color: #D1C000;
-   color: #fff;
-   font-size: 19px; */
    
    background-color: grey;
    border: 5px solid rebeccapurple;
@@ -256,44 +247,52 @@ th {
    font-size: 19px;
 }
 
-/* le modalRevenu */
+/* Le fond semi-transparent qui couvre tout l'écran */
 .modalR {
-  position: absolute;
-   display: none;
+   display: none; /* Commence masqué */
    position: fixed;
    z-index: 1;
-   padding-top: 80px 30px;
-   right: 250px;
-   top: 200px;
-   width: 65%;
-   overflow: auto;
-
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, 0.4); /* Couleur semi-transparente */
 }
 
+/* Le contenu du modal */
 .modal-contentR {
-   background-color: #fefefe;
-   margin: auto;
+   background-color: white;
+   margin: 10% auto; /* Centrer le modal avec un espace autour */
    padding: 20px;
-   border: 1px solid gray;
-   width: 75%;
+   border: 1px solid #888;
+   width: 50%; /* Réduire la largeur du modal à 50% de l'écran */
+   max-width: 600px; /* Limiter la taille du modal pour ne pas qu'il devienne trop grand */
+   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Ajouter une ombre douce */
+   border-radius: 10px; /* Ajouter un arrondi sur les bords du modal */
 }
 
-
+/* Le bouton de fermeture */
 .closeR {
-   color: #690c0c;
+   color: #aaa;
    float: right;
-   font-size: 20px;
+   font-size: 28px;
    font-weight: bold;
-   cursor: pointer;
 }
 
 .closeR:hover,
 .closeR:focus {
    color: black;
    text-decoration: none;
+   cursor: pointer;
 }
 
-#addContactButtonR {
+
+
+
+
+
+
+.addContactButtonR {
    background-color: #0C5E69;
    border: 1px solid #0C5E69;
    color: #fff;
