@@ -4,7 +4,6 @@ const { updateSolde } = require('./solde');
 
 
 const db = require('../database');
-// const { updateSolde } = require('./solde'); // Assure-toi que cette fonction est exportée depuis solde.js
 
 // 📌 Récupérer toutes les dépenses
 router.get('/', (req, res) => {

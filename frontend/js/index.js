@@ -182,46 +182,6 @@ function deleteRevenu(index) {
 
 
 
-// document.getElementById('formRevenu').addEventListener('submit', function (event) {
-//     event.preventDefault();
-
-//     // Récupérer les valeurs des champs
-//     const titreR = document.getElementById('titreR').value.trim(); // On enlève les espaces inutiles
-//     const montantR = parseFloat(document.getElementById('montantR').value);
-
-//     // Vérification que les champs sont remplis et que le montant est un nombre
-//     if (!titreR || isNaN(montantR)) {
-//         alert("❌ Merci de remplir tous les champs correctement !");
-//         return;
-//     }
-
-//     const newRevenu = { titreR, montantR };
-
-//     // Affichage des données envoyées pour vérification
-//     console.log("Revenu à envoyer:", newRevenu);
-
-//     // Envoi du revenu à l'API
-//     fetch(`${apiBaseUrl}/revenus`, {
-//         method: 'POST',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify(newRevenu)
-//     })
-//     .then(response => response.json())
-//     .then(data => {
-//         fetchRevenus(); // Rafraîchir la liste des revenus
-//         console.log("Revenu ajouté:", data);
-//     })
-//     .catch(error => {
-//         console.error('Erreur lors de l\'ajout du revenu:', error);
-//     });
-
-//     // Réinitialisation du formulaire et fermeture du modal
-//     document.getElementById('titreR').value = '';
-//     document.getElementById('montantR').value = '';
-//     document.getElementById('contactModalR').style.display = 'none';
-// });
-
-
 function deleteRevenu(index) {
     const revenu = tabStockRevenu[index]; // Récupérer le revenu à partir de l'index
     const revenuId = revenu.idRevenu; // Utiliser l'ID du revenu pour la suppression
@@ -368,14 +328,23 @@ function updateTableRevenu() {
 
     tabStockRevenu.forEach((revenu, index) => {
         const tr = document.createElement('tr');
+       
+
         tr.innerHTML = `
-            <td>${revenu.titre}</td>
-            <td>${revenu.montant}</td>
-            <td>
-                <button onclick="editRevenu(${index})">Modifier</button>
-                <button onclick="deleteRevenu(${index})">Supprimer</button>
-            </td>
-        `;
+        <td class="center-text">${revenu.titre}</td>
+        <td class="center-text">${revenu.montant}</td>
+        <td class="center-text">
+            <button onclick="editRevenu(${index})" class="button-styled">
+                Modifier
+            </button>
+            <button onclick="deleteRevenu(${index})" class="button-styled">
+                Supprimer
+            </button>
+        </td>
+    `;
+    
+
+
         tableRevenu.appendChild(tr);
     });
 }
@@ -383,6 +352,62 @@ function updateTableRevenu() {
 
 
 // // modif
+
+// function editDepense(index) {
+//     const depense = tabStockDepense[index];
+//     // Ouvrir le formulaire de modification et pré-remplir les champs
+//     document.getElementById('titre').value = depense.titre;
+//     document.getElementById('montant').value = depense.montant;
+
+//     // Ouvrir le modal pour modifier la dépense
+//     document.getElementById('contactModal').style.display = 'block';
+
+//     // Ajouter un événement sur le formulaire pour mettre à jour la dépense
+//     document.getElementById('formDepense').onsubmit = function (event) {
+//         event.preventDefault();
+
+//         // Récupérer les nouvelles valeurs
+//         const updatedTitre = document.getElementById('titre').value;
+//         const updatedMontant = parseFloat(document.getElementById('montant').value);
+
+//         // Créer l'objet mis à jour
+//         const updatedDepense = { titre: updatedTitre, montant: updatedMontant };
+
+//         // Vérification des données envoyées
+//         console.log('Dépense modifiée:', updatedDepense);
+
+//         // Envoyer la requête PUT à l'API pour mettre à jour la dépense
+//         fetch(`${apiBaseUrl}/depenses/${depense.idDepense}`, {
+//             method: 'PUT',
+//             headers: { 'Content-Type': 'application/json' },
+//             body: JSON.stringify(updatedDepense)
+//         })
+//         .then(response => {
+//             if (!response.ok) {
+//                 throw new Error('Erreur lors de la modification');
+//             }
+//             return response.json();
+//         })
+//         .then(data => {
+//             console.log('Dépense modifiée avec succès:', data);
+
+//             // Mettre à jour la liste locale et la table des dépenses
+//             tabStockDepense[index] = updatedDepense;
+//             updateTableDepense();  // Mettre à jour la table
+
+//             // Recalculer le solde
+//             calculerSolde();
+
+//             // Fermer le modal et réinitialiser les champs
+//             document.getElementById('contactModal').style.display = 'none';
+//             document.getElementById('titre').value = '';
+//             document.getElementById('montant').value = '';
+//         })
+//         .catch(error => {
+//             console.error('Erreur lors de la modification de la dépense:', error);
+//         });
+//     };
+// }
 
 function editDepense(index) {
     const depense = tabStockDepense[index];
@@ -407,8 +432,8 @@ function editDepense(index) {
         // Vérification des données envoyées
         console.log('Dépense modifiée:', updatedDepense);
 
-        // Envoyer la requête PUT à l'API pour mettre à jour la dépense
-        fetch(`${apiBaseUrl}/depenses/${depense.idDepense}`, {
+        // Envoi de la requête PUT à l'API pour mettre à jour la dépense
+        fetch(`${apiBaseUrl}/depenses/${depense.idDepense}`, {  // Assurez-vous que depense.idDepense est bien récupéré ici
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(updatedDepense)
@@ -443,6 +468,64 @@ function editDepense(index) {
 
 
 
+
+
+// function editRevenu(index) {
+//     const revenu = tabStockRevenu[index];
+//     // Ouvrir le formulaire de modification et pré-remplir les champs
+//     document.getElementById('titreR').value = revenu.titre;
+//     document.getElementById('montantR').value = revenu.montant;
+
+//     // Ouvrir le modal pour modifier le revenu
+//     document.getElementById('contactModalR').style.display = 'block';
+
+//     // Ajouter un événement sur le formulaire pour mettre à jour le revenu
+//     document.getElementById('formRevenu').onsubmit = function (event) {
+//         event.preventDefault();
+
+//         const updatedTitreR = document.getElementById('titreR').value;
+//         const updatedMontantR = parseFloat(document.getElementById('montantR').value);
+
+//         const updatedRevenu = { titreR: updatedTitreR, montantR: updatedMontantR };
+
+//         // Log pour vérifier les données envoyées
+//         console.log('Revenu modifié:', updatedRevenu);
+
+//         // Envoyer la requête PUT à l'API pour mettre à jour le revenu
+//         fetch(`${apiBaseUrl}/revenus/${revenu.idRevenu}`, {
+//             method: 'PUT',
+//             headers: { 'Content-Type': 'application/json' },
+//             body: JSON.stringify(updatedRevenu)
+//         })
+//         .then(response => {
+//             if (!response.ok) {
+//                 throw new Error('Erreur lors de la modification');
+//             }
+//             return response.json();
+//         })
+//         .then(data => {
+//             console.log('Revenu modifié avec succès:', data);
+
+//             // Mettre à jour la liste locale
+//             tabStockRevenu[index] = updatedRevenu;  // Remplace l'ancien revenu par le nouveau
+//             updateTableRevenu();  // Met à jour la table
+
+//             // Recalculer le solde
+//             calculerSolde();
+
+//             // Fermer le modal et réinitialiser les champs
+//             document.getElementById('contactModalR').style.display = 'none';
+//             document.getElementById('titreR').value = '';
+//             document.getElementById('montantR').value = '';
+//         })
+//         .catch(error => {
+//             console.error('Erreur lors de la modification du revenu:', error);
+//         });
+//     };
+// }
+
+
+
 function editRevenu(index) {
     const revenu = tabStockRevenu[index];
     // Ouvrir le formulaire de modification et pré-remplir les champs
@@ -465,7 +548,7 @@ function editRevenu(index) {
         console.log('Revenu modifié:', updatedRevenu);
 
         // Envoyer la requête PUT à l'API pour mettre à jour le revenu
-        fetch(`${apiBaseUrl}/revenus/${revenu.idRevenu}`, {
+        fetch(`${apiBaseUrl}/revenus/${revenu.idRevenu}`, {  // Assurez-vous que revenu.idRevenu est bien récupéré ici
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(updatedRevenu)
@@ -496,7 +579,6 @@ function editRevenu(index) {
         });
     };
 }
-
 
 
 
